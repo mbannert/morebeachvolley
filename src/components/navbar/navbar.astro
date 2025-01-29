@@ -1,0 +1,71 @@
+---
+import Container from "../container.astro";
+import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+
+const menuitems = [
+{
+    // no menu needed for now, if that changes simple stuff here
+    //title: "About",
+    //path: "/about",
+  },
+];
+---
+
+<style>
+  .zueri{
+    color: #0070b4;
+  }
+</style>
+
+<Container>
+  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
+    <Astronav>
+      <div class="flex w-full lg:w-auto items-center justify-between">
+        <a href="/" class="text-lg">
+          <span class="font-bold text-slate-800">MOREBEACH</span>
+          <span class="text-slate-600 zueri">VOLLEY</span>.ch
+        </a>
+        <div class="block lg:hidden">
+          <MenuIcon class="w-4 h-4 text-gray-800" />
+        </div>
+      </div>
+      <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
+        <ul class="flex flex-col lg:flex-row lg:gap-3">
+          {
+            menuitems.map((item, index) => (
+              <>
+                {/* {item.children && (
+                  <Dropdown
+                    title={item.title}
+                    children={item.children}
+                    lastItem={index === menuitems.length - 1}
+                  />
+                )} */}
+
+                {
+                  <li>
+                    <a
+                      href={item.path}
+                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
+                      <span> {item.title}</span>
+                      {/* {item.badge && (
+                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
+                          New
+                        </span>
+                      )} */}
+                    </a>
+                  </li>
+                }
+              </>
+            ))
+          }
+        </ul>
+    </Astronav>
+    <div>
+        <div class="hidden lg:flex items-center gap-4">
+            <a href="">de</a>
+            <a href="">en</a>
+          </div>
+    </div>
+  </header>
+</Container>

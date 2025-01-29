@@ -1,0 +1,41 @@
+---
+import Container from "./container.astro";
+---
+
+<header>
+  <!-- styling start - underline when hovering - currently only underlined when clicking, not when hovering?-->
+  <style>
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <!-- styling end -->
+  <nav class="absolute z-50 w-full bg-black dark:lg">
+    <Container>
+      <!-- 2 grid start -->
+      <div class="mt-12 grid sm:grid-cols-3 gap-4 sm:gap-12 max-w-3xl w-full mx-auto">
+        <div class="space-y-3">
+          <h2 class="text-gray-100 dark:text-black text-xl font-semibold">
+            MOREBEACHVOLLEY
+          </h2>
+        </div>                
+        <div class="space-y-3">
+          <h2 class="text-gray-100 dark:text-black text-xl font-semibold">
+            Resources
+          </h2>
+        </div>        
+        <div class="space-y-3">
+          <h2 class="text-gray-100 dark:text-black text-xl font-semibold">
+            Contact
+          </h2>
+          <p class="text-gray-400 dark:text-gray-400">Constantin Quadt</p>
+           <p class="text-gray-400 dark:text-gray-400">Jonathan Beck</p>
+           <p class="text-gray-400 dark:text-gray-400">Matthias Bannert</p>
+           <p class="text-gray-400 dark:text-gray-400">hoi [at] morebeachvolley.ch</p>
+        </div>        
+      </div>
+      <!-- 2 grid end -->
+      <br />
+      </Container>
+  </nav>
+</header>
