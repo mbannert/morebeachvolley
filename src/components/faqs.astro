@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+// const faqEntries = await getCollection('faqs',  ({ id }) => id.includes(`${complocale}/`));
+const faqEntries = await getCollection('faqs',  ({ id }) => id.includes('de'));
+
+---
+
+
+
+<div class="mt-0 mb-16 md:mt-0">
+    {faqEntries.map(faqEntry => (
+    <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+        {faqEntry.data.question}
+    </h2>
+    <p class="text-lg w-3/4 mt-4 text-slate-600">
+        {faqEntry.body}
+    </p>
+    ))}
+</div>
+

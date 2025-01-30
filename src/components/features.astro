@@ -1,52 +1,59 @@
 ---
 // @ts-ignore
 import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
 import { getEntry } from "astro:content";
 const featureEntry = await getEntry('feature', 'de/feature')
+const featureEntries = await getCollection('features',  ({ id }) => id.includes('de'));
+
+interface FeatureContent {
+    title: string;
+    teaser: string;
+}
+
+interface Feature {
+    [locale: string]: FeatureContent;
+}
+
+const featureHeader: Feature = {
+    de: {
+        title: 'Unser Angebot',
+        teaser: 'Ein kurzer Teaser auf Deutsch.'
+    },
+    en: {
+        title: 'Our Offering',
+        teaser: 'A short teaser in English.'
+    }
+};
+
+const getFeatureByLocale = (locale: string): FeatureContent | undefined => {
+    return featureHeader[locale];
+};
+
+const fHeader = getFeatureByLocale('de');
 
 
-const features = [
-  {
-    title: "Diverse Hosts",
-    description:
-      "Our events are hosted by a large variety of institutions that work with data. From academia, to the public and private sectors.",
-    icon: "simple-icons:teamspeak",
-  },
-  {
-    title: "Talks with Application in Mind",
-    description:
-      "Learn how others use and integrate R, from creating new packages to implementations and trends.",
-    icon: "simple-icons:teamspeak",
-  },
-  {
-    title: "Networking & Community",
-    description:
-      "Our events are designed with plenty of time to network and exchange. From in-depth technical discussions to job market postings.",
-    icon: "simple-icons:teamspeak",
-  },
-
-];
 ---
 
 <div class="mt-0 md:mt-0">
   <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
-    {featureEntry?.data.title}
+    {fHeader?.title}
   </h2>
   <p class="text-lg w-3/4 mt-4 text-slate-600">
-   From logistics to climate research, and from data journalism to real estate, visit our events in the Zurich greater area to learn about a wide range of applications.
+   {fHeader?.teaser}
   </p>
 </div>
 
 <div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 mb-16 gap-16">
   {
-    features.map((item) => (
+    featureEntries.map((item) => (
       <div class="flex gap-4 items-start">
         <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
           
         </div>
         <div>
-          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
-          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+          <h3 class="font-semibold text-lg">{item.data.title}</h3>{" "}
+          <p class="text-slate-500 mt-2 leading-relaxed">{item.data.teaser}</p>
         </div>
       </div>
     ))

@@ -1,7 +1,5 @@
 ---
-title: 'Mehr Netze. Mehr Sand. Mehr Beachvolleyball.'
-buttontext: Beitreten
-teasertitle: Beachvolley Zürich
+title: 'Unser Angebot'
 teaser:  Werde Mitglied und unterstütze uns – es ist kostenlos.
 ---
 

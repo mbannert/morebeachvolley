@@ -1,7 +1,5 @@
 ---
 title: 'Unser Angebot'
-buttontext: Beitreten
-teasertitle: Beachvolley Zürich
 teaser:  Werde Mitglied und unterstütze uns – es ist kostenlos.
 ---
 

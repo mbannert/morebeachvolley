@@ -15,9 +15,14 @@ const heroCollection = defineCollection({
     type: 'content',
     schema: z.object({
       title: z.string(),
-      buttontext: z.string(),
-      teasertitle: z.string(),
       teaser: z.string(),
+    })
+  });
+
+  const faqCollection = defineCollection({
+    type: 'content',
+    schema: z.object({
+      question: z.string()
     })
   });
 
@@ -25,6 +30,7 @@ const heroCollection = defineCollection({
 
   export const collections = {
     'hero': heroCollection,
-    'feature': featureCollection
+    'features': featureCollection,
+    'faqs': faqCollection
   };
   
