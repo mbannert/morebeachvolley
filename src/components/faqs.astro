@@ -12,7 +12,7 @@ const faqEntries = await getCollection('faqs',  ({ id }) => id.includes('de'));
     <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
         {faqEntry.data.question}
     </h2>
-    <p class="text-lg w-3/4 mt-4 text-slate-600">
+    <p class="text-lg w-3/4 mt-4 mb-16 text-slate-600">
         {faqEntry.body}
     </p>
     ))}

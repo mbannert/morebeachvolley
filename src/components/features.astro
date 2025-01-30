@@ -2,8 +2,6 @@
 // @ts-ignore
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
-import { getEntry } from "astro:content";
-const featureEntry = await getEntry('feature', 'de/feature')
 const featureEntries = await getCollection('features',  ({ id }) => id.includes('de'));
 
 interface FeatureContent {
@@ -17,11 +15,11 @@ interface Feature {
 
 const featureHeader: Feature = {
     de: {
-        title: 'Unser Angebot',
+        title: 'Deine Mitgliedschaft',
         teaser: 'Ein kurzer Teaser auf Deutsch.'
     },
     en: {
-        title: 'Our Offering',
+        title: 'Your Membership',
         teaser: 'A short teaser in English.'
     }
 };
