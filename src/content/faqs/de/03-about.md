@@ -1,5 +1,5 @@
 ---
-question: "Wer steckt hinter MOREBEACHVOLLEY.ch ?"
+question: "Wer steckt hinter morebeachvolley.ch ?"
 ---
 
 MOREBEACHVOLLEYBALL ist ein Community Projekt von Beachvolleyballern aus Zürich.

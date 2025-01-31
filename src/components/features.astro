@@ -2,7 +2,10 @@
 // @ts-ignore
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
-const featureEntries = await getCollection('features',  ({ id }) => id.includes('de'));
+const cl = Astro.currentLocale;
+
+const featureEntries = await getCollection('features',  ({ id }) => id.includes(`${cl}`));
+
 
 interface FeatureContent {
     title: string;
@@ -28,7 +31,7 @@ const getFeatureByLocale = (locale: string): FeatureContent | undefined => {
     return featureHeader[locale];
 };
 
-const fHeader = getFeatureByLocale('de');
+const fHeader = getFeatureByLocale(`${cl}`);
 
 
 ---

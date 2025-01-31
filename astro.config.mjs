@@ -18,6 +18,7 @@ export default defineConfig({
   i18n: {
     defaultLocale: "de",
     locales: ["de", "en"],
+    routing: "manual"
   },
   integrations: [tailwind(), sitemap(), icon()]
 });

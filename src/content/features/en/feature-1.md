@@ -1,5 +1,5 @@
 ---
-title: 'Unser Angebot'
+title: 'Talk'
 teaser:  Werde Mitglied und unterstütze uns – es ist kostenlos.
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: 'Unser Angebot'
+title: 'Your Membership '
 teaser:  Werde Mitglied und unterstütze uns – es ist kostenlos.
 ---
 

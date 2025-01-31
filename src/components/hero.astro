@@ -1,8 +1,8 @@
 ---
 import { getEntry } from "astro:content";
-const heroEntry = await getEntry('hero', 'de/hero');
+const cl = Astro.currentLocale;
+const heroEntry = await getEntry('hero', `${cl}/hero`);
 
-//const heroEntry = await getEntry('hero',`${complocale}/titlepage`);
 ---
 
 <main

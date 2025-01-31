@@ -27,10 +27,32 @@ const heroCollection = defineCollection({
   });
 
 
+  const formLabelCollection = defineCollection({
+    type: 'data',
+    schema: z.object({
+      email: z.string(),
+      password: z.string(), 
+      register_password_desc: z.string(),
+      join_button: z.string()
+    })
+  });
+
+  const sectionLabelsCollection = defineCollection({
+    type: 'data',
+    schema: z.object({
+      register_title: z.string(),
+      register_desc: z.string()
+    })
+
+  })
+
+
 
   export const collections = {
     'hero': heroCollection,
     'features': featureCollection,
-    'faqs': faqCollection
+    'faqs': faqCollection,
+    'formLabels': formLabelCollection,
+    'sectionLabels': sectionLabelsCollection
   };
   
