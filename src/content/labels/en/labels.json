@@ -1,0 +1,9 @@
+{
+    "password": "Passwort",
+    "email": "E-Mail",
+    "join": "Beitreten",
+    "register_title": "Registrierung",
+    "register_desc": "Schön, dass Du hier bist.",
+    "register_password_desc": "Passwort",
+    "register_email_desc": ""
+}
