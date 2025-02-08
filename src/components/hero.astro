@@ -5,10 +5,16 @@ const heroEntry = await getEntry('hero', `${cl}/hero`);
 
 ---
 
-<main
-  class="grid lg:grid-cols-3 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
-  <div class="py-6 md:order-1 hidden md:block lg:col-span-1">
+<style>
+  .zueri-back{
+    background-color: #0070b4;
+  }
+</style>
 
+
+<main
+  class="grid lg:grid-cols-3 place-items-center pt-16 pb-8 md:pt-12 md:pb-16">
+  <div class="py-6 md:order-1 hidden md:block lg:col-span-1">
   </div>
   <div class="lg:col-span-2">
     <h1
@@ -17,8 +23,14 @@ const heroEntry = await getEntry('hero', `${cl}/hero`);
     </h1>
     <p class="text-lg mt-4 text-slate-600 max-w-xl">
     {heroEntry?.body}
-
+    
     </p>
+
+    <div class="mt-6 mb-8 flex pr-12 sm:flex-row gap-3">
+       <a href="register" target="_blank" rel="noopener" class="rounded zueri-back text-center transition focus-visible:ring-2 ring-offset-2 ring-gray-200 px-5 py-2.5 bg-black text-white  border-2 border-transparent flex gap-1"> 
+        Join us - it's free!
+       </a> 
+    </div>
     
     
   </div>

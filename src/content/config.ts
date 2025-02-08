@@ -16,6 +16,7 @@ const heroCollection = defineCollection({
     schema: z.object({
       title: z.string(),
       teaser: z.string(),
+      icon: z.string()
     })
   });
 

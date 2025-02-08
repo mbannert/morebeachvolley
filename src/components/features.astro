@@ -36,6 +36,7 @@ const fHeader = getFeatureByLocale(`${cl}`);
 
 ---
 
+<!--
 <div class="mt-0 md:mt-0">
   <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
     {fHeader?.title}
@@ -45,14 +46,17 @@ const fHeader = getFeatureByLocale(`${cl}`);
   </p>
 </div>
 
-<div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 mb-16 gap-16">
+ -->
+
+<div class="grid sm:grid-cols-2 md:grid-cols-3 mb-32 gap-16">
   {
     featureEntries.map((item) => (
       <div class="flex gap-4 items-start">
-        <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
-          
+        <div>
+          <Icon name={item.data.icon} style={{ width: '2.5em', height: '2.5em' }}/>
         </div>
         <div>
+          
           <h3 class="font-semibold text-lg">{item.data.title}</h3>{" "}
           <p class="text-slate-500 mt-2 leading-relaxed">{item.data.teaser}</p>
         </div>
