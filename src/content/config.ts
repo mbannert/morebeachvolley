@@ -1,5 +1,5 @@
 import { z, defineCollection, render } from 'astro:content';
-
+import { glob } from 'astro/loaders';
 
 const heroCollection = defineCollection({
     type: 'content',
@@ -21,7 +21,7 @@ const heroCollection = defineCollection({
   });
 
   const faqCollection = defineCollection({
-    type: 'content',
+    loader: glob({ pattern: "**/*.md", base: "./src/content/faqs" }),
     schema: z.object({
       question: z.string()
     })
@@ -40,9 +40,6 @@ const heroCollection = defineCollection({
       join: z.string()
     })
   });
-
-
-
 
 
   export const collections = {

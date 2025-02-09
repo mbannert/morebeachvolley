@@ -1,20 +1,38 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 const cl = Astro.currentLocale;
-const faqEntries = await getCollection('faqs',  ({ id }) => id.includes(`${cl}`));
+const faqs = await getCollection('faqs', ({ id }) => id.includes(`${cl}`));
 
+const renderedFaqs = await Promise.all(
+  faqs.map(async (faq) => {
+    if (!faq) {
+      throw new Error('Error. shizzle.');
+    }
+    const { Content, headings } = await render(faq);
+    return {
+      ...faq,
+      renderedContent: Content,
+      headings,
+    };
+  })
+);
 ---
 
-
+<style is:global>
+  p {
+    margin-bottom: 1em; /* Adjust this value to your desired spacing */
+  }
+</style>
 
 <div class="mt-0 mb-16 md:mt-0">
-    {faqEntries.map(faqEntry => (
-    <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
-        {faqEntry.data.question}
-    </h2>
-    <p class="text-lg w-3/4 mt-4 mb-16 text-slate-600">
-        {faqEntry.body}
-    </p>
-    ))}
+  {renderedFaqs.map(faq => (
+    <div key={faq.id}>
+      <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight mb-4">
+        {faq.data.question}
+      </h2>
+      <div class="text-lg w-3/4 mt-4 mb-16 text-slate-600">
+        <faq.renderedContent />
+      </div>
+    </div>
+  ))}
 </div>
-

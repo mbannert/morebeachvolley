@@ -4,6 +4,7 @@ import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 const cl = Astro.currentLocale;
 
+
 const featureEntries = await getCollection('features',  ({ id }) => id.includes(`${cl}`));
 
 
@@ -16,22 +17,24 @@ interface Feature {
     [locale: string]: FeatureContent;
 }
 
-const featureHeader: Feature = {
-    de: {
-        title: 'Deine Mitgliedschaft',
-        teaser: 'Ein kurzer Teaser auf Deutsch.'
-    },
-    en: {
-        title: 'Your Membership',
-        teaser: 'A short teaser in English.'
-    }
-};
+// we don't use a feature teaser at the moment
+// less is more :) 
+// const featureHeader: Feature = {
+//     de: {
+//         title: 'Deine Mitgliedschaft',
+//         teaser: 'Ein kurzer Teaser auf Deutsch.'
+//     },
+//     en: {
+//         title: 'Your Membership',
+//         teaser: 'A short teaser in English.'
+//     }
+// };
 
-const getFeatureByLocale = (locale: string): FeatureContent | undefined => {
-    return featureHeader[locale];
-};
+// const getFeatureByLocale = (locale: string): FeatureContent | undefined => {
+//     return featureHeader[locale];
+// };
 
-const fHeader = getFeatureByLocale(`${cl}`);
+// const fHeader = getFeatureByLocale(`${cl}`);
 
 
 ---
@@ -48,7 +51,7 @@ const fHeader = getFeatureByLocale(`${cl}`);
 
  -->
 
-<div class="grid sm:grid-cols-2 md:grid-cols-3 mb-32 gap-16">
+<div class="grid sm:grid-cols-2 md:grid-cols-3 mb-24 gap-16">
   {
     featureEntries.map((item) => (
       <div class="flex gap-4 items-start">
@@ -57,7 +60,7 @@ const fHeader = getFeatureByLocale(`${cl}`);
         </div>
         <div>
           
-          <h3 class="font-semibold text-lg">{item.data.title}</h3>{" "}
+          <h3 class="font-semibold text-lg">{item.data.title}</h3>
           <p class="text-slate-500 mt-2 leading-relaxed">{item.data.teaser}</p>
         </div>
       </div>
