@@ -1,0 +1,191 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+import { SESSION_COOKIE, createSessionClient} from "../../server/appwrite.js";
+import Container from "@components/Container.astro";
+import TabMembership from '@components/TabMembership.astro';
+import TabProfile from '@components/TabProfile.astro';
+import TabEmail from '@components/TabEmail.astro';
+import TabPassword from '@components/TabPassword.astro';
+
+// Redirect the user if not signed in
+const { user } = Astro.locals;
+if (!user) {
+  return Astro.redirect("register");
+}
+
+
+
+// Handle form action
+if (Astro.request.method === "POST") {
+  // Create session client
+  const { account } = createSessionClient(Astro.request);
+  const { users, databases } = createServices();
+  const form_data = await Astro.request.formData();
+  const form_type = form_data?.get('form');
+  const zip = form_data.get('zip'); 
+  const newsletter = form_data.get('newsletter');
+
+
+  let profile_data;
+  
+  if (typeof zip === 'string' && typeof newsletter  === 'string'){
+    profile_data = {
+            zip: parseInt(zip, 10),
+            newsletter: newsletter === 'on'
+        };
+  } else {
+    throw new Error("Form data is missing required fields.");
+  }
+  
+
+    // ok this update stuff is not working yet. 
+    if (form_type === "update"){
+        databases.updateDocument(
+        '67093d67002873e2c459',
+        '67254b050023f2b7dd7d',
+        user.$id,
+        profile_data
+        )
+    }
+  
+  
+    if (form_type === "signout"){
+        // Delete the Appwrite session
+        await account.deleteSession("current");
+
+        // Delete the session cookie
+        Astro.cookies.delete(SESSION_COOKIE);
+
+        // Redirect the user to sign up page
+        return Astro.redirect(`/${complocale}/login/`);
+    }
+
+    if (form_type === "delete"){
+        // remember identities is for oauth providers
+        // you can remove certain providers from you account
+        // with deleteIdentity. 
+        // also remind that there is password recovery already 
+        // implemented with
+        users.delete(user.$id);
+        deleteUserProfile(databases, user.$id);
+        await account.deleteSession("current");
+
+        // Delete the session cookie
+        Astro.cookies.delete(SESSION_COOKIE);
+        return Astro.redirect(`/${complocale}/`);
+    }
+}
+
+---
+
+<style>
+ .account-page { padding: 20px; }
+ .update-button { margin-top: 20px; }
+</style>
+
+<Layout title="Beachvolley Zurich">
+	<main class="space-y-16 sm:space-y-28 lg:space-y-32 pb-40 overflow-clip">
+    
+            <Container>
+              
+                <div class="relative pt-32 sm:pt-44 ml-auto">
+                  
+                  <h1 class="text-gray-900 dark:text-white font-bold text-4xl sm:text-3xl md:text-4xl">Mein Account</h1>
+                  <h3 class="text-[#2077C2] text-sm sm:text-base mb-6 font-bold">Beachvolley Zürich</h3>
+                    <section class="flex flex-row flex-wrap m-8">          
+                        <input id="tab-one" type="radio" name="tabs" class="peer/tab-one opacity-0 absolute"  checked/>
+                        <label for="tab-one" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-one:bg-[#2077C2] peer-checked/tab-one:text-white hover:text-white cursor-default p-4 block">
+                          {label.data.tab_membership}
+                        </label>
+                      
+                        <input id="tab-two" type="radio" name="tabs" class="peer/tab-two opacity-0 absolute" />
+                        <label for="tab-two" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-two:bg-[#2077C2] peer-checked/tab-two:text-white hover:text-white cursor-default p-4 block">
+                          {label.data.tab_profile}
+                        </label>
+                      
+                        <input id="tab-three" type="radio" name="tabs" class="peer/tab-three opacity-0 absolute" />
+                        <label for="tab-three" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-three:bg-[#2077C2] peer-checked/tab-three:text-white hover:text-white cursor-default p-4 block">
+                          {label.data.tab_email}
+                        </label>
+                        <input id="tab-four" type="radio" name="tabs" class="peer/tab-four opacity-0 absolute" />
+                        <label for="tab-four" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-four:bg-[#2077C2] peer-checked/tab-four:text-white hover:text-white cursor-default p-4 block">
+                          {label.data.tab_password}
+                        </label>
+                      
+                        
+
+                        <div class="basis-full h-0"></div>
+                      
+                        <div class="bg-[#2077C2] hidden peer-checked/tab-one:block p-4 w-full">
+                          <TabMembership></TabMembership>
+                        </div>
+                        <div class="bg-[#2077C2] hidden peer-checked/tab-two:block p-4 w-full">
+                          <TabProfile></TabProfile>
+                        </div>
+                        <div class="bg-[#2077C2] hidden peer-checked/tab-three:block p-4 w-full">
+                          <TabEmail></TabEmail>
+                        </div>
+                        <div class="bg-[#2077C2] hidden peer-checked/tab-four:block p-4 w-full">
+                          <TabPassword></TabPassword>
+                        </div>
+
+                          
+                      </section>
+                      <div class="text-right h-full group sm:pt-0 p-6 sm:pt-0 sm:p-8 bg-white border border-gray-200/50 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+                        <form method="POST">
+                            <input type="hidden" name="form" value="signout">
+                            <button type="submit" class="bg-[#2077C2] hover:bg-blue-700 text-white font-bold py-2 px-4">{labelEntry.data.signout}</button>
+                        </form>                  
+                      </div>  
+                </div>
+            </Container>    
+        
+    </main>
+</Layout>
+
+
+<script>
+
+    const deleteForm = document.getElementById('deleteForm');
+    if(deleteForm){
+      deleteForm.addEventListener('submit', function(event) {
+        const result = confirm("Möchtest Du Dich wirklich von Beachvolley Zürich abmelden und Deinen Account löschen?");
+        if (!result) {
+            event.preventDefault(); // Prevent form submission if user clicks "Cancel"
+        } else {
+            alert("Schade. Deine Mitgliedschaft wurde beeendet und Deine Daten wurden gelöscht. Du kannst Dich jederzeit wieder neu registrieren.")
+            console.log("User chose to proceed.");
+        }
+    });
+    } else {
+      console.error("Form with ID 'deleteForm' not found.");
+    }
+    
+    // const updateForm = document.getElementById('updateForm');
+    // if(updateForm)
+    // document.getElementById('updateForm').addEventListener('submit', async function(event){
+    //     event.preventDefault();
+    //     const formData = new FormData(this);
+    //     const zip = parseInt(formData.get('zip'), 10);
+    //     const newsletter = formData.get('newsletter') === 'on';
+        
+    //     const response = await fetch(window.location.href, 
+    //     { 
+    //         method: 'POST',
+    //         body: formData 
+    //     });
+
+
+    //     if (response.ok) { // Update the form field with the new value
+    //          document.getElementById('zip').value = zip;
+    //          document.getElementById('newsletter').checked = newsletter;
+    //          alert('Danke. Dein Profil wurde aktualisiert.')
+    //         } else { 
+    //             alert('Error updating profile'); 
+    //         }
+    //     this.submit();
+    // })
+
+  
+</script>

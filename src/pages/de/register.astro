@@ -2,9 +2,56 @@
 import Container from "@components/container.astro"
 import Layout from "@layouts/Layout.astro"
 import { getEntry } from "astro:content"
-const cl = Astro.currentLocale;
+import { SESSION_COOKIE, createAdminClient } from "../../server/appwrite";
+import { ID } from "node-appwrite";
 
-const labels = await getEntry('labels', 'de/labels')
+const cl = Astro.currentLocale;
+const label = await getEntry('labels', `${cl}/labels`)
+
+
+// If user object is already present, 
+// redirect to account page instead of going through registration
+const { user } = Astro.locals;
+if (user) {
+   return Astro.redirect(`/${cl}/myaccount`);
+}
+
+// from processing
+
+if(Astro.request.method === "POST"){
+
+  // for the Auth account itself we only need email and password. 
+  const data = await Astro.request.formData();
+  const email = data.get("email");
+  const password = data.get("password");
+  const name = data.get("name");
+
+  let session;
+
+  if (typeof email === 'string' && typeof password === 'string' && typeof name === 'string') {
+    const { account } = createAdminClient();
+    await account.create(ID.unique(), email, password, name)
+    session = await account.createEmailPasswordSession(email, password);
+  } else {
+    throw new Error("Email or password is missing or invalid.");
+  }
+
+  
+  // set the session cookie to stay logged in after redirect
+  Astro.cookies.set(SESSION_COOKIE, session.secret, {
+    path: "/",
+    expires: new Date(session.expire),
+    sameSite: "strict",
+    secure: true,
+    httpOnly: true,
+  });
+
+  // Redirect to the account page
+  return Astro.redirect(`/${cl}/myaccount`);
+
+}
+
+
 ---
 
 
@@ -20,10 +67,10 @@ const labels = await getEntry('labels', 'de/labels')
               <div class="relative pt-32 sm:pt-44 ml-auto">
                 <div class="lg:w-2/3 text-left mx-auto">                    
                   <h2 class="text-4xl  lg:text-5xl font-bold lg:tracking-tight">
-                    {labels?.data.register_title}
+                    {label?.data.register_title}
                   </h2>
                   <p class="text-lg w-3/4 mt-4 mb-16 text-slate-600">
-                   {labels?.data.register_desc}
+                   {label?.data.register_desc}
                   </p>
                 <form method="POST" class="w-full max-w-lg">
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -37,20 +84,20 @@ const labels = await getEntry('labels', 'de/labels')
                     <div class="flex flex-wrap -mx-3 mb-6">
                       <div class="w-full px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2" for="password">
-                          {labels?.data?.password}
+                          {label?.data?.password}
                         </label>
                         <input id="password" name="password" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="password" type="password" placeholder="******************">
-                        <p class="text-gray-600 text-xs italic mb-4">{labels?.data?.register_password_desc}</p>
+                        <p class="text-gray-600 text-xs italic mb-4">{label?.data?.register_password_desc}</p>
                       </div>
                       <div class="w-full px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xl font-bold mb-2" for="email">
                           E-mail
                         </label>
                         <input id="email" name="email" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" placeholder="player@mail.com">
-                        <p class="text-gray-600 text-xs italic">{labels?.data?.register_email_desc}</p>
+                        <p class="text-gray-600 text-xs italic">{label?.data?.register_email_desc}</p>
                       </div>
                       <div class="w-full md:w-2/3 px-3 py-3">
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{labels?.data?.join}</button>
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">{label?.data?.join}</button>
                       </div>                      
                     </div>
                   </form>

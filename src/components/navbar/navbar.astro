@@ -1,6 +1,8 @@
 ---
 import Container from "../container.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import { getEntry } from "astro:content";
+
 
 const menuitems = [
 {
@@ -37,11 +39,11 @@ const create_url = (locale: string, url: string): string => {
   return `/${locale}/${path}`;
 };
 
-
-
-
 const de_url = create_url('de', Astro.url.pathname)
 const en_url = create_url('en', Astro.url.pathname)
+
+const cl = Astro.currentLocale;
+const label = await getEntry('labels', `${cl}/labels`)
 
 
 ---
@@ -98,7 +100,7 @@ const en_url = create_url('en', Astro.url.pathname)
     </Astronav>
     <div>
         <div class="hidden lg:flex items-center gap-4">
-        <a class="px-2 lang-link" href="register">login</a>
+          <a class="px-2" href="myaccount">{ label?.data.my_account }</a>
         <a class="px-2 lang-link" href={de_url}>de</a>
         <a class="px-2 lang-link" href={en_url}>en</a>
     

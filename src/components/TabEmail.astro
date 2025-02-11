@@ -1,0 +1,24 @@
+---
+import { getEntry } from 'astro:content';
+const cl = Astro.currentLocale;
+const label = await getEntry('labels', `${cl}/labels`);
+const { user } = Astro.locals;
+---
+
+<div class="h-full group p-6 sm:p-8  bg-white border border-gray-200/50 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-90 shadow-2xl shadow-gray-600/10">
+    <table class="mt-6 -mb-2 w-full text-gray-600 dark:text-gray-300">
+        <tr>
+            <td class="py-2">Email</td>
+            <td class="text-gray-500">
+            <input id="email" name="email" class="appearance-none block w-2/3 bg-gray-200 text-gray-700  py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" value={user.email}>  
+            </td>
+        </tr>
+        <tr>
+            <td class="py-2">pw</td>
+            <td class="text-gray-500">
+                <input id="password" name="password" class="appearance-none block w-2/3 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="password" type="password" placeholder="******************">
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</div>

@@ -32,6 +32,7 @@ const heroCollection = defineCollection({
     type: 'data',
     schema: z.object({
       email: z.string(),
+      my_account: z.string(),
       password: z.string(), 
       register_title: z.string(),
       register_desc: z.string(),
