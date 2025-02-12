@@ -47,7 +47,7 @@ if(Astro.request.method === "POST"){
   });
 
   // Redirect to the account page
-  return Astro.redirect(`/${cl}/myaccount`);
+  return Astro.redirect(`myaccount`);
 
 }
 
@@ -64,12 +64,12 @@ if(Astro.request.method === "POST"){
                 aria-hidden
                 class="opacity-0 dark:opacity-25 absolute [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)] top-0 w-[1000px] z-10 h-[800px] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
               />
-              <div class="relative pt-32 sm:pt-44 ml-auto">
-                <div class="lg:w-2/3 text-left mx-auto">                    
+              <div class="relative pt-12 sm:pt-12 ml-auto">
+                <div class="lg:w-full text-left mx-auto">                    
                   <h2 class="text-4xl  lg:text-5xl font-bold lg:tracking-tight">
                     {label?.data.register_title}
                   </h2>
-                  <p class="text-lg w-3/4 mt-4 mb-16 text-slate-600">
+                  <p class="text-lg w-1/2 mt-4 mb-8 text-slate-600">
                    {label?.data.register_desc}
                   </p>
                 <form method="POST" class="w-full max-w-lg">

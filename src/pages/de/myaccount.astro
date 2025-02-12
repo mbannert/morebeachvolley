@@ -2,11 +2,14 @@
 import Layout from '../../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
 import { SESSION_COOKIE, createSessionClient} from "../../server/appwrite.js";
-import Container from "@components/Container.astro";
 import TabMembership from '@components/TabMembership.astro';
 import TabProfile from '@components/TabProfile.astro';
 import TabEmail from '@components/TabEmail.astro';
 import TabPassword from '@components/TabPassword.astro';
+const cl = Astro.currentLocale;
+
+const label = await getEntry('labels', `${cl}/labels`)
+
 
 // Redirect the user if not signed in
 const { user } = Astro.locals;
