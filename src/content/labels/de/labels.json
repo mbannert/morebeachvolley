@@ -14,7 +14,8 @@
     "tab_password_new_pw": "Neues Passwort",
     "tab_password_old_pw": "Aktuelles Passwort",
     "tab_profile_update_account": "Update",
-    "tab_profile_tab_profile_zip": "Postleitzahl",
-    "tab_membership_delete_account": "Account löschen"
+    "tab_profile_zip": "Postleitzahl",
+    "tab_membership_delete_account": "Account löschen",
+    "tab_membership_profile_joined": "Mitglied seit:",
     "signout": "Sign out"
 }
