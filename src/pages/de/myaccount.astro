@@ -1,15 +1,17 @@
 ---
-import Layout from '../../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
-import { SESSION_COOKIE, createSessionClient} from "../../server/appwrite.js";
+import Container from "@components/container.astro"
+import Layout from '../../layouts/Layout.astro';
 import TabMembership from '@components/TabMembership.astro';
 import TabProfile from '@components/TabProfile.astro';
 import TabEmail from '@components/TabEmail.astro';
 import TabPassword from '@components/TabPassword.astro';
+
+
+import { SESSION_COOKIE, createSessionClient } from "../../server/appwrite";
+
 const cl = Astro.currentLocale;
-
 const label = await getEntry('labels', `${cl}/labels`)
-
 
 // Redirect the user if not signed in
 const { user } = Astro.locals;
@@ -19,11 +21,27 @@ if (!user) {
 
 
 
+
 // Handle form action
 if (Astro.request.method === "POST") {
-  // Create session client
   const { account } = createSessionClient(Astro.request);
-  const { users, databases } = createServices();
+
+
+// logout block
+if (form_type === "signout"){
+        // Delete the Appwrite session
+        await account.deleteSession("current");
+
+        // Delete the session cookie
+        Astro.cookies.delete(SESSION_COOKIE);
+
+        // Redirect the user to sign up page
+        return Astro.redirect(`/${cl}/login/`);
+  }
+
+
+
+
   const form_data = await Astro.request.formData();
   const form_type = form_data?.get('form');
   const zip = form_data.get('zip'); 
@@ -53,16 +71,7 @@ if (Astro.request.method === "POST") {
     }
   
   
-    if (form_type === "signout"){
-        // Delete the Appwrite session
-        await account.deleteSession("current");
-
-        // Delete the session cookie
-        Astro.cookies.delete(SESSION_COOKIE);
-
-        // Redirect the user to sign up page
-        return Astro.redirect(`/${complocale}/login/`);
-    }
+   
 
     if (form_type === "delete"){
         // remember identities is for oauth providers
@@ -99,21 +108,21 @@ if (Astro.request.method === "POST") {
                     <section class="flex flex-row flex-wrap m-8">          
                         <input id="tab-one" type="radio" name="tabs" class="peer/tab-one opacity-0 absolute"  checked/>
                         <label for="tab-one" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-one:bg-[#2077C2] peer-checked/tab-one:text-white hover:text-white cursor-default p-4 block">
-                          {label.data.tab_membership}
+                          {label?.data.tab_membership}
                         </label>
                       
                         <input id="tab-two" type="radio" name="tabs" class="peer/tab-two opacity-0 absolute" />
                         <label for="tab-two" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-two:bg-[#2077C2] peer-checked/tab-two:text-white hover:text-white cursor-default p-4 block">
-                          {label.data.tab_profile}
+                          {label?.data.tab_profile}
                         </label>
                       
                         <input id="tab-three" type="radio" name="tabs" class="peer/tab-three opacity-0 absolute" />
                         <label for="tab-three" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-three:bg-[#2077C2] peer-checked/tab-three:text-white hover:text-white cursor-default p-4 block">
-                          {label.data.tab_email}
+                          {label?.data.tab_email}
                         </label>
                         <input id="tab-four" type="radio" name="tabs" class="peer/tab-four opacity-0 absolute" />
                         <label for="tab-four" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-four:bg-[#2077C2] peer-checked/tab-four:text-white hover:text-white cursor-default p-4 block">
-                          {label.data.tab_password}
+                          {label?.data.tab_password}
                         </label>
                       
                         
@@ -138,7 +147,7 @@ if (Astro.request.method === "POST") {
                       <div class="text-right h-full group sm:pt-0 p-6 sm:pt-0 sm:p-8 bg-white border border-gray-200/50 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
                         <form method="POST">
                             <input type="hidden" name="form" value="signout">
-                            <button type="submit" class="bg-[#2077C2] hover:bg-blue-700 text-white font-bold py-2 px-4">{labelEntry.data.signout}</button>
+                            <button type="submit" class="bg-[#2077C2] hover:bg-blue-700 text-white font-bold py-2 px-4">{label?.data.signout}</button>
                         </form>                  
                       </div>  
                 </div>

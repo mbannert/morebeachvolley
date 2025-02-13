@@ -38,7 +38,18 @@ const heroCollection = defineCollection({
       register_desc: z.string(),
       register_password_desc: z.string(),
       register_email_desc: z.string(),
-      join: z.string()
+      join: z.string(),
+      register_cookie: z.string(),
+      tab_profile: z.string(),
+      tab_email: z.string(),
+      tab_membership: z.string(),
+      tab_password_old_pw: z.string(),
+      tab_password_new_pw: z.string(),
+      tab_profile_update_account: z.string(),
+      tab_profile_zip: z.string(),
+      tab_membership_delete_account: z.string(),
+      signout: z.string()
+
     })
   });
 
