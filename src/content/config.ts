@@ -49,8 +49,9 @@ const heroCollection = defineCollection({
       tab_profile_zip: z.string(),
       tab_membership_delete_account: z.string(),
       tab_membership_profile_joined: z.string(),
+      login_title: z.string(),
+      login_no_account: z.string(),
       signout: z.string()
-
     })
   });
 
