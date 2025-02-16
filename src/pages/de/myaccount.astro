@@ -98,57 +98,61 @@ if (form_type === "signout"){
 	<main class="space-y-16 sm:space-y-28 lg:space-y-32 pb-40 overflow-clip">
     
             <Container>
-              
-                <div class="relative pt-32 sm:pt-44 ml-auto">
+
+              <h2 class="text-4xl  lg:text-5xl font-bold lg:tracking-tight mt-16 mb-24">
+                {label?.data.my_account}
+              </h2>
+
+              <section class="flex flex-col w-full pb-6">
+                <div class="flex flex-row flex-wrap w-full">
+                  <input id="tab-one" type="radio" name="tabs" class="peer/tab-one hidden" checked/>
+                  <label for="tab-one" class="flex-1 cursor-pointer text-center p-4 peer-checked/tab-one:border-b-4 peer-checked/tab-one:border-[#2077C2] peer-checked/tab-one:text-[#2077C2]">
+                    {label?.data.tab_membership}
+                  </label>
                   
-                  <h1 class="text-gray-900 dark:text-white font-bold text-4xl sm:text-3xl md:text-4xl">Mein Account</h1>
-                  <h3 class="text-[#2077C2] text-sm sm:text-base mb-6 font-bold">Beachvolley Zürich</h3>
-                    <section class="flex flex-row flex-wrap m-8">          
-                        <input id="tab-one" type="radio" name="tabs" class="peer/tab-one opacity-0 absolute"  checked/>
-                        <label for="tab-one" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-one:bg-[#2077C2] peer-checked/tab-one:text-white hover:text-white cursor-default p-4 block">
-                          {label?.data.tab_membership}
-                        </label>
-                      
-                        <input id="tab-two" type="radio" name="tabs" class="peer/tab-two opacity-0 absolute" />
-                        <label for="tab-two" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-two:bg-[#2077C2] peer-checked/tab-two:text-white hover:text-white cursor-default p-4 block">
-                          {label?.data.tab_profile}
-                        </label>
-                      
-                        <input id="tab-three" type="radio" name="tabs" class="peer/tab-three opacity-0 absolute" />
-                        <label for="tab-three" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-three:bg-[#2077C2] peer-checked/tab-three:text-white hover:text-white cursor-default p-4 block">
-                          {label?.data.tab_email}
-                        </label>
-                        <input id="tab-four" type="radio" name="tabs" class="peer/tab-four opacity-0 absolute" />
-                        <label for="tab-four" class="bg-slate-300 hover:bg-[#2077C2] peer-checked/tab-four:bg-[#2077C2] peer-checked/tab-four:text-white hover:text-white cursor-default p-4 block">
-                          {label?.data.tab_password}
-                        </label>
-                      
-                        
-
-                        <div class="basis-full h-0"></div>
-                      
-                        <div class="bg-[#2077C2] hidden peer-checked/tab-one:block p-4 w-full">
-                          <TabMembership></TabMembership>
-                        </div>
-                        <div class="bg-[#2077C2] hidden peer-checked/tab-two:block p-4 w-full">
-                          <TabProfile></TabProfile>
-                        </div>
-                        <div class="bg-[#2077C2] hidden peer-checked/tab-three:block p-4 w-full">
-                          <TabEmail></TabEmail>
-                        </div>
-                        <div class="bg-[#2077C2] hidden peer-checked/tab-four:block p-4 w-full">
-                          <TabPassword></TabPassword>
-                        </div>
-
-                          
-                      </section>
-                      <div class="text-right h-full group sm:pt-0 p-6 sm:pt-0 sm:p-8 bg-white border border-gray-200/50 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10">
+                  <input id="tab-two" type="radio" name="tabs" class="peer/tab-two hidden" />
+                  <label for="tab-two" class="flex-1 cursor-pointer text-center p-4 peer-checked/tab-two:border-b-4 peer-checked/tab-two:border-[#2077C2] peer-checked/tab-two:text-[#2077C2]">
+                    {label?.data.tab_profile}
+                  </label>
+                  
+                  <input id="tab-three" type="radio" name="tabs" class="peer/tab-three hidden" />
+                  <label for="tab-three" class="flex-1 cursor-pointer text-center p-4 peer-checked/tab-three:border-b-4 peer-checked/tab-three:border-[#2077C2] peer-checked/tab-three:text-[#2077C2]">
+                    {label?.data.tab_email}
+                  </label>
+                  
+                  <input id="tab-four" type="radio" name="tabs" class="peer/tab-four hidden" />
+                  <label for="tab-four" class="flex-1 cursor-pointer text-center p-4 peer-checked/tab-four:border-b-4 peer-checked/tab-four:border-[#2077C2] peer-checked/tab-four:text-[#2077C2]">
+                    {label?.data.tab_password ?? 'Password Tab'}
+                  </label>
+                
+              
+                
+              
+                <div class="hidden peer-checked/tab-one:block w-full">
+                  <TabMembership />
+                </div>
+                <div class="hidden peer-checked/tab-two:block w-full">
+                  <TabProfile />
+                </div>
+                <div class="hidden peer-checked/tab-three:block w-full">
+                  <TabEmail />
+                </div>
+                <div class="hidden peer-checked/tab-four:block w-full">
+                  <TabPassword />
+                </div>
+              </div>
+              </section>
+              
+              
+              
+              
+                    
+                      <div class="text-right h-full sm:pt-0 p-6 sm:pt-0 sm:p-8">
                         <form method="POST">
                             <input type="hidden" name="form" value="signout">
                             <button type="submit" class="bg-[#2077C2] hover:bg-blue-700 text-white font-bold py-2 px-4">{label?.data.signout}</button>
                         </form>                  
                       </div>  
-                </div>
             </Container>    
         
     </main>
