@@ -1,6 +1,6 @@
 // src/server/appwrite.js
 
-import { Client, Account } from "node-appwrite";
+import { Client, Account, Users, Databases } from "node-appwrite";
 
 // The name of your cookie that will store the session
 export const SESSION_COOKIE = "morebeachvolley-sesssion";
@@ -14,11 +14,20 @@ export function createAdminClient() {
 
   // Return the services you need
   return {
-    get account() {
+    get admin_account() {
       return new Account(client);
     },
+    get admin_users() {
+      return new Users(client);
+    },
+    get admin_databases() {
+      return new Databases(client);
+    }
   };
 }
+
+
+
 
 // Session client, used to make requests on behalf of the logged in user
 export function createSessionClient(request) {
@@ -41,6 +50,18 @@ export function createSessionClient(request) {
       return new Account(client);
     },
   };
+}
+
+
+
+
+export async function deleteUserProfile(db, account_id){
+  const result = await db.deleteDocument(
+    '67093d67002873e2c459', // databaseId
+    '67254b050023f2b7dd7d', // collectionId
+    account_id // documentId
+);
+return result;
 }
 
 // Helper function to parse cookies

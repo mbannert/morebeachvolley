@@ -29,9 +29,9 @@ if(Astro.request.method === "POST"){
   let session;
 
   if (typeof email === 'string' && typeof password === 'string' && typeof name === 'string') {
-    const { account } = createAdminClient();
-    await account.create(ID.unique(), email, password, name)
-    session = await account.createEmailPasswordSession(email, password);
+    const { admin_account } = createAdminClient();
+    await admin_account.create(ID.unique(), email, password, name)
+    session = await admin_account.createEmailPasswordSession(email, password);
   } else {
     throw new Error("Email or password is missing or invalid.");
   }

@@ -8,7 +8,9 @@ import TabEmail from '@components/TabEmail.astro';
 import TabPassword from '@components/TabPassword.astro';
 
 
-import { SESSION_COOKIE, createSessionClient } from "../../server/appwrite";
+import { SESSION_COOKIE, createAdminClient } from "../../server/appwrite";
+import { createSessionClient } from '../../server/appwrite';
+
 
 const cl = Astro.currentLocale;
 const label = await getEntry('labels', `${cl}/labels`)
@@ -20,10 +22,16 @@ if (!user) {
 }
 
 
+
 // Handle form action
 if (Astro.request.method === "POST") {
-  const { account } = createSessionClient(Astro.request);
+const { admin_account, admin_users, admin_databases} = createAdminClient();
+const { account } = createSessionClient(Astro.request);
 
+const form_data = await Astro.request.formData();
+const form_type = form_data?.get('form');
+const zip = form_data.get('zip'); 
+const newsletter = form_data.get('newsletter');
 
 // logout block
 if (form_type === "signout"){
@@ -33,18 +41,28 @@ if (form_type === "signout"){
         // Delete the session cookie
         Astro.cookies.delete(SESSION_COOKIE);
 
-        // Redirect the user to sign up page
-        return Astro.redirect(`/${cl}/login/`);
+        // Redirect the user to register page
+        return Astro.redirect(`login`);
+}
+
+// delete user account block 
+if (form_type === "delete"){
+        const user = await account.get();
+        // remember identities is for oauth providers
+        // you can remove certain providers from you account
+        // with deleteIdentity. 
+        // also remind that there is password recovery already 
+        // implemented with
+        // users.delete(user.$id);
+        // deleteUserProfile(databases, user.$id);
+        
+        await admin_users.delete(user.$id);
+        
+
+        // Delete the session cookie
+        Astro.cookies.delete(SESSION_COOKIE);
+        return Astro.redirect(`register`);
   }
-
-
-
-
-  const form_data = await Astro.request.formData();
-  const form_type = form_data?.get('form');
-  const zip = form_data.get('zip'); 
-  const newsletter = form_data.get('newsletter');
-
 
   let profile_data;
   
@@ -60,7 +78,7 @@ if (form_type === "signout"){
 
     // ok this update stuff is not working yet. 
     if (form_type === "update"){
-        databases.updateDocument(
+        admin_databases.updateDocument(
         '67093d67002873e2c459',
         '67254b050023f2b7dd7d',
         user.$id,
@@ -71,20 +89,7 @@ if (form_type === "signout"){
   
    
 
-    if (form_type === "delete"){
-        // remember identities is for oauth providers
-        // you can remove certain providers from you account
-        // with deleteIdentity. 
-        // also remind that there is password recovery already 
-        // implemented with
-        users.delete(user.$id);
-        deleteUserProfile(databases, user.$id);
-        await account.deleteSession("current");
 
-        // Delete the session cookie
-        Astro.cookies.delete(SESSION_COOKIE);
-        return Astro.redirect(`/${complocale}/`);
-    }
 }
 
 ---
