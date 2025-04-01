@@ -2,9 +2,54 @@
 import Layout from '../../layouts/Layout.astro';
 import Container from "@components/container.astro"
 import { getEntry } from "astro:content";
+import { SESSION_COOKIE, createAdminClient } from "../../server/appwrite";
 
 const cl = Astro.currentLocale;
 const label = await getEntry('labels', `${cl}/labels`)
+
+const { user } = Astro.locals;
+if (user) {
+   return Astro.redirect(`/${cl}/myaccount`);
+}
+
+
+if(Astro.request.method === "POST"){
+
+// for the Auth account itself we only need email and password. 
+const data = await Astro.request.formData();
+const email = data.get("email");
+const password = data.get("password");
+
+let session;
+
+if (typeof email === 'string' && typeof password === 'string') {
+  const { admin_account } = createAdminClient();
+  try{
+    session = await admin_account.createEmailPasswordSession(email, password);
+  } catch(error){
+    return Astro.redirect(`error`);
+  }
+} else {
+  return Astro.redirect(`error`);
+}
+
+
+// set the session cookie to stay logged in after redirect
+Astro.cookies.set(SESSION_COOKIE, session.secret, {
+  path: "/",
+  expires: new Date(session.expire),
+  sameSite: "strict",
+  secure: true,
+  httpOnly: true,
+});
+
+// Redirect to the account page
+return Astro.redirect(`myaccount`);
+
+}
+
+
+
 
 
 

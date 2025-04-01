@@ -8,7 +8,7 @@ import TabEmail from '@components/TabEmail.astro';
 import TabPassword from '@components/TabPassword.astro';
 
 
-import { SESSION_COOKIE, createAdminClient } from "../../server/appwrite";
+import { SESSION_COOKIE, createAdminClient, deleteUserProfile } from "../../server/appwrite";
 import { createSessionClient } from '../../server/appwrite';
 
 
@@ -54,8 +54,7 @@ if (form_type === "delete"){
         // also remind that there is password recovery already 
         // implemented with
         // users.delete(user.$id);
-        // deleteUserProfile(databases, user.$id);
-        
+        deleteUserProfile(admin_databases, user.$id);
         await admin_users.delete(user.$id);
         
 

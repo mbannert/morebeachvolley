@@ -41,6 +41,7 @@ const heroCollection = defineCollection({
       join: z.string(),
       register_cookie: z.string(),
       tab_profile: z.string(),
+      tab_password: z.string(),
       tab_email: z.string(),
       tab_membership: z.string(),
       tab_password_old_pw: z.string(),

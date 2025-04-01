@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Container from "@components/container.astro"
+
+
+
+
+---
+<style>
+    .reg-link:hover{
+      text-decoration: underline;
+    }
+  </style>
+  
+  
+  
+  <Layout title="Beachvolley Zurich">
+      <main class="space-y-16 sm:space-y-28 lg:space-y-32 pb-40 overflow-clip">
+          <section class="relative overflow-hidden scroll-mt-24">  
+              <Container>
+                  <div 
+                  aria-hidden
+                  class="opacity-0 dark:opacity-25 absolute [background-image:radial-gradient(theme(colors.gray.500),transparent_50%)] top-0 w-[1000px] z-10 h-[800px] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+                />
+                  <div class="lg:w-full mt-32 text-left mx-auto">
+                    <h2 class="text-4xl mb-8 lg:text-5xl font-bold lg:tracking-tight">
+                      Oups.
+                    </h2>
+					<p>
+						Something went wrong. Maybe a wrong password or a wrong email address. Or soemthing else. Please try
+						again and or reach out to hoi [ at ] morebeachvolley.ch in case your problem persist. 
+					</p>
+				</div>
+			  </Container>
+			  </section>
+	  </main>
+  </Layout>
