@@ -67,6 +67,24 @@ export async function createUserProfile(db, account_id, dta) {
 }
 
 
+export async function getUserProfile(db, user_id) {
+  // console.log("DB instance:", db);
+  // console.log("user id:", user_id);
+  try {
+    const user_profile = await db.getDocument(
+      '67093d67002873e2c459',
+      '67254b050023f2b7dd7d',
+      user_id
+    );
+    if (!user_profile) {
+      throw new Error("No user profile found for the given user_id.");
+    }
+    // console.log("profile:", user_profile);
+    return user_profile;
+  } catch (error) {
+    throw new Error(`Failed to retrieve user profile: ${error.message}`);
+  }
+}
 
 
 
@@ -78,6 +96,7 @@ export async function deleteUserProfile(db, account_id){
 );
 return result;
 }
+
 
 // Helper function to parse cookies
 function parseCookies(cookies) {

@@ -6,9 +6,9 @@ import TabMembership from '@components/TabMembership.astro';
 import TabProfile from '@components/TabProfile.astro';
 import TabEmail from '@components/TabEmail.astro';
 import TabPassword from '@components/TabPassword.astro';
+import fs from 'fs';
 
-
-import { SESSION_COOKIE, createAdminClient, deleteUserProfile } from "../../server/appwrite";
+import { SESSION_COOKIE, createAdminClient, deleteUserProfile, getUserProfile } from "../../server/appwrite";
 import { createSessionClient } from '../../server/appwrite';
 
 
@@ -22,16 +22,31 @@ if (!user) {
 }
 
 
+const { admin_users, admin_databases} = createAdminClient();
+const { account } = createSessionClient(Astro.request);
+const user_profile = await getUserProfile(admin_databases, user.$id);
+
+// console.log("admin_databases", admin_databases);
+
+// const result = await admin_databases.getDocument(
+// '67093d67002873e2c459',
+// '67254b050023f2b7dd7d',
+//     '67ec4e43002e9d77a99a', // documentId
+//     [] // queries (optional)
+// );
+
+
+
 
 // Handle form action
 if (Astro.request.method === "POST") {
-const { admin_account, admin_users, admin_databases} = createAdminClient();
-const { account } = createSessionClient(Astro.request);
 
 const form_data = await Astro.request.formData();
 const form_type = form_data?.get('form');
-const zip = form_data.get('zip'); 
-const newsletter = form_data.get('newsletter');
+
+
+// const zip = form_data.get('zip'); 
+// const newsletter = form_data.get('newsletter');
 
 // logout block
 if (form_type === "signout"){
@@ -63,27 +78,45 @@ if (form_type === "delete"){
         return Astro.redirect(`register`);
   }
 
-  let profile_data;
+
+
   
-  if (typeof zip === 'string' && typeof newsletter  === 'string'){
-    profile_data = {
-            zip: parseInt(zip, 10),
-            newsletter: newsletter === 'on'
-        };
-  } else {
-    throw new Error("Form data is missing required fields.");
-  }
+  
   
 
-    // ok this update stuff is not working yet. 
-    if (form_type === "update"){
-        admin_databases.updateDocument(
-        '67093d67002873e2c459',
-        '67254b050023f2b7dd7d',
-        user.$id,
-        profile_data
-        )
-    }
+  if (!user_profile) {
+    throw new Error("User profile is undefined. Cannot proceed.");
+  }
+
+  if (form_type === "update"){
+
+
+    
+  fs.writeFileSync('user_profile_debug.json', JSON.stringify(user_profile, null, 2));
+
+    admin_databases.updateDocument(
+    '67093d67002873e2c459',
+    '67254b050023f2b7dd7d',
+    user.$id,
+    user_profile
+    )
+}
+
+// Safely write the data to a file
+
+  
+  // if (typeof zip === 'string' && typeof newsletter  === 'string'){
+  //   profile_data = {
+  //           zip: parseInt(zip, 10),
+  //           newsletter: newsletter === 'on'
+  //       };
+  // } else {
+  //   throw new Error("Form data is missing required fields.");
+  // }
+  
+
+    
+    
   
   
    
@@ -104,14 +137,14 @@ if (form_type === "delete"){
             <Container>
 
               <h2 class="text-4xl  lg:text-5xl font-bold lg:tracking-tight mt-16 mb-24">
-                {label?.data.my_account}
+                {label?.data.my_account} 
               </h2>
 
               <section class="flex flex-col w-full pb-6">
                 <div class="flex flex-row flex-wrap w-full">
                   <input id="tab-one" type="radio" name="tabs" class="peer/tab-one hidden" checked/>
                   <label for="tab-one" class="flex-1 cursor-pointer text-center p-4 peer-checked/tab-one:border-b-4 peer-checked/tab-one:border-[#2077C2] peer-checked/tab-one:text-[#2077C2]">
-                    {label?.data.tab_membership}
+                    {label?.data.tab_membership} 
                   </label>
                   
                   <input id="tab-two" type="radio" name="tabs" class="peer/tab-two hidden" />
@@ -133,10 +166,10 @@ if (form_type === "delete"){
                 
               
                 <div class="hidden peer-checked/tab-one:block w-full">
-                  <TabMembership />
+                  <TabMembership  />
                 </div>
                 <div class="hidden peer-checked/tab-two:block w-full">
-                  <TabProfile />
+                 <TabProfile user_profile={user_profile ?? {}}  /> 
                 </div>
                 <div class="hidden peer-checked/tab-three:block w-full">
                   <TabEmail />
