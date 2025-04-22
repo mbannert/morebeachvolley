@@ -25,15 +25,9 @@ if (!user) {
 const { admin_users, admin_databases} = createAdminClient();
 const { account } = createSessionClient(Astro.request);
 const user_profile = await getUserProfile(admin_databases, user.$id);
+let f_newsletter = user_profile?.newsletter;
+let f_zip = user_profile?.zip;
 
-// console.log("admin_databases", admin_databases);
-
-// const result = await admin_databases.getDocument(
-// '67093d67002873e2c459',
-// '67254b050023f2b7dd7d',
-//     '67ec4e43002e9d77a99a', // documentId
-//     [] // queries (optional)
-// );
 
 
 
@@ -89,36 +83,24 @@ if (form_type === "delete"){
   }
 
   if (form_type === "update"){
-
+    f_newsletter = form_data.get("newsletter") == 'on';
+    f_zip = form_data.get("zip");
+    const up_data = {
+        newsletter : f_newsletter ?? false,
+        zip : parseInt(f_zip, 10)
+    };
+    console.log("update form:", up_data)
 
     
-  fs.writeFileSync('user_profile_debug.json', JSON.stringify(user_profile, null, 2));
-
-    admin_databases.updateDocument(
+    const response = await admin_databases.updateDocument(
     '67093d67002873e2c459',
     '67254b050023f2b7dd7d',
     user.$id,
-    user_profile
+    up_data
     )
+    console.log("Update response:", response);
 }
-
-// Safely write the data to a file
-
-  
-  // if (typeof zip === 'string' && typeof newsletter  === 'string'){
-  //   profile_data = {
-  //           zip: parseInt(zip, 10),
-  //           newsletter: newsletter === 'on'
-  //       };
-  // } else {
-  //   throw new Error("Form data is missing required fields.");
-  // }
-  
-
     
-    
-  
-  
    
 
 
@@ -196,7 +178,7 @@ if (form_type === "delete"){
 </Layout>
 
 
-<script>
+<script define:vars={{ f_newsletter, f_zip }}>
 
     const deleteForm = document.getElementById('deleteForm');
     if(deleteForm){
@@ -213,6 +195,13 @@ if (form_type === "delete"){
       console.error("Form with ID 'deleteForm' not found.");
     }
     
+  document.querySelector("[name='newsletter']").checked = f_newsletter;
+  document.querySelector("[name='zip']").value = f_zip;
+
+
+
+
+
     // const updateForm = document.getElementById('updateForm');
     // if(updateForm)
     // document.getElementById('updateForm').addEventListener('submit', async function(event){

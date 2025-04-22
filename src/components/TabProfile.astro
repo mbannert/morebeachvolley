@@ -4,23 +4,6 @@ const cl = Astro.currentLocale;
 const label = await getEntry('labels', `${cl}/labels`);
 const { user_profile } = Astro.props;
 
-console.log("Newsletter status:", user_profile.newsletter);
-
-
-// console.log("User Profile:", Astro.props.user_profile);
-
-
-
-// async function getUserProfile() {
-//      const { databases } = createServices();
-//      const user_profile = await databases.getDocument(
-//         '67093d67002873e2c459',
-//         '67254b050023f2b7dd7d',
-//         user.$id);
-//     return user_profile
-//     }
-// const user_profile = await getUserProfile();
-
 ---
 <div class="h-full group p-6 sm:p-8 bg-white border border-gray-200/50 bg-opacity-90 shadow-2xl shadow-gray-600/10">
     <form method="POST" id="updateForm">
