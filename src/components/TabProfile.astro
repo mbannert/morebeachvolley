@@ -5,8 +5,30 @@ const label = await getEntry('labels', `${cl}/labels`);
 const { user_profile } = Astro.props;
 
 ---
+
+
+<script>
+ 
+
+// Extend the Window type
+declare global {
+  interface Window {
+    preventRefresh: (e: Event) => void;
+  }
+}
+
+// Attach the preventRefresh function to the global window object
+window.preventRefresh = function (e: Event) {
+  e.preventDefault(); // Prevent the default form submission
+  console.log('Form submission prevented!');
+};
+
+
+
+  </script>
+
 <div class="h-full group p-6 sm:p-8 bg-white border border-gray-200/50 bg-opacity-90 shadow-2xl shadow-gray-600/10">
-    <form method="POST" id="updateForm">
+    <form method="POST" id="updateForm" onsubmit="preventRefresh(event)">
     <table class="mt-6 -mb-2 w-full text-gray-600">
         <tr>
             <td class="py-2">ZIP</td>
@@ -38,4 +60,6 @@ const { user_profile } = Astro.props;
     </table>
 </form>
 </div>
+
+
 

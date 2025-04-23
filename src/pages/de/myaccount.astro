@@ -6,7 +6,6 @@ import TabMembership from '@components/TabMembership.astro';
 import TabProfile from '@components/TabProfile.astro';
 import TabEmail from '@components/TabEmail.astro';
 import TabPassword from '@components/TabPassword.astro';
-import fs from 'fs';
 
 import { SESSION_COOKIE, createAdminClient, deleteUserProfile, getUserProfile } from "../../server/appwrite";
 import { createSessionClient } from '../../server/appwrite';
@@ -111,6 +110,8 @@ if (form_type === "delete"){
 <style>
  .account-page { padding: 20px; }
  .update-button { margin-top: 20px; }
+
+
 </style>
 
 <Layout title="Beachvolley Zurich">
@@ -159,6 +160,7 @@ if (form_type === "delete"){
                 <div class="hidden peer-checked/tab-four:block w-full">
                   <TabPassword />
                 </div>
+              
               </div>
               </section>
               
