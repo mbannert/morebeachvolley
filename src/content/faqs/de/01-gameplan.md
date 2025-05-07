@@ -8,7 +8,7 @@ In einer **ersten Phase** wollen wir uns einen **Überblick über den Bestand** 
 
 -Rechen/Sandschieber zu Verfügung stellen  
 -Hinweistafeln für die Feldpflege anbringen  
--Netzanlagen verbessern/ersetzen
+-Netzanlagen verbessern/ersetzen  
 -Linien und Antennen anbringen (wo nicht vorhanden)  
 -Gefahrenstellen an Feldern/Feldabgrenzungen reduzieren
 
