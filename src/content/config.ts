@@ -20,12 +20,21 @@ const heroCollection = defineCollection({
     })
   });
 
+  const dataCollection = defineCollection({
+    type: 'content',
+    schema: z.object({
+      title: z.string()
+    })
+  });
+
   const faqCollection = defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/faqs" }),
     schema: z.object({
       question: z.string()
     })
   });
+
+ 
 
 
   const labelCollection = defineCollection({
@@ -61,6 +70,7 @@ const heroCollection = defineCollection({
   export const collections = {
     'hero': heroCollection,
     'features': featureCollection,
+    'data': dataCollection,
     'faqs': faqCollection,
     'labels': labelCollection
   };

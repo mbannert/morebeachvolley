@@ -2,6 +2,7 @@
 question: "Tönt gut. Wie wollt Ihr konkret vorgehen?"
 ---
 
+
 Im Grossraum Zürich gibt es nominell vermutlich etwa 40 Beachvolleyballfelder. 
 Nicht alle dieser Felder sind auch bespielbar oder für den Turnierbetrieb geeignet. 
 In einer **ersten Phase** wollen wir uns als Community einen genauen **Überblick über den Bestand** verschaffen. 

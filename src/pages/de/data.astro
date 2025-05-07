@@ -1,0 +1,61 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Container from '@components/container.astro';
+import { getCollection, render } from "astro:content";
+const cl = Astro.currentLocale;
+
+const dataColl = await getCollection('data', ({ id }) => id.includes(`${cl}`));
+
+const renderedData = await Promise.all(
+    dataColl.map(async (d) => {
+    if (!d) {
+      throw new Error('Error. shizzle.');
+    }
+    const { Content, headings } = await render(d);
+    return {
+      ...d,
+      renderedContent: Content,
+      headings,
+    };
+  })
+);
+
+
+---
+
+<style is:global>
+    .data-content > h2{ 
+       @apply font-semibold text-lg
+    }
+
+    .data-content > p{ 
+        @apply text-sm sm:text-base mb-2 sm:mb-4
+    } 
+    
+    .data-content > ul{ 
+        margin-bottom: 1em;
+    }        
+</style>
+
+
+
+<Layout title="morebeachvolley">
+	<Container>
+
+
+
+        <div class="mt-0 mb-16 md:mt-0">
+            {
+              renderedData.map((item) => (        
+                  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-16 mb-12">{item.data.title}</h2>
+                <div class="data-content w-full sm:w-2/3">
+                    <item.renderedContent />
+                </div>
+              ))
+            }
+          </div>
+        
+        
+	</Container>
+  </Layout>
+  
