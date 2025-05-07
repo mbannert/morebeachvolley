@@ -31,17 +31,17 @@ window.preventRefresh = function (e: Event) {
     <form method="POST" id="updateForm" onsubmit="preventRefresh(event)">
     <table class="mt-6 -mb-2 w-full text-gray-600">
         <tr>
-            <td class="py-2">ZIP</td>
-            <td class="text-gray-500">
-                <input id="zip" name="zip"  class="appearance-none block w-full bg-gray-200 text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="number"
+            <td class="py-2 text-sm sm:text-base">ZIP</td>
+            <td class="text-gray-500 text-sm sm:text-base">
+                <input id="zip" name="zip"  class="appearance-none block w-full bg-gray-200 text-gray-700 text-sm sm:text-base rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="number"
                 min="1000"
                 max="9999"  
                 value={user_profile.zip} />
             </td>
         </tr>
         <tr>
-            <td class="py-2">Newsletter</td>
-            <td class="text-gray-500">
+            <td class="py-2 text-sm sm:text-base">Newsletter</td>
+            <td class="text-gray-500 text-sm sm:text-base">
                   <input
                   id="newsletter"
                   name="newsletter"
@@ -53,7 +53,7 @@ window.preventRefresh = function (e: Event) {
             <td></td>
             <td class="text-right">
                     <input type="hidden" name="form" value="update">
-                    <button id="update_button" type="submit" class="bg-[#2077C2] hover:bg-red-500 text-white font-bold py-2 px-4">Update</button>
+                    <button id="update_button" type="submit" class="bg-[#2077C2] hover:bg-red-500 text-white text-sm sm:text-base font-bold py-2 px-4">Update</button>
                 </td>
         </tr>
     </tbody>

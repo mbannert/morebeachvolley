@@ -9,22 +9,22 @@ const { user } = Astro.locals;
     <form method="POST" id="update_email">
     <table class="mt-6 -mb-2 w-full text-gray-600">
         <tr>
-            <td class="py-2">Email</td>
-            <td class="text-gray-500">
-            <input id="email" name="email" class="appearance-none block w-2/3 bg-gray-200 text-gray-700  py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" value={user.email}>  
+            <td class="py-2 text-sm sm:text-base">Email</td>
+            <td class="text-gray-500 pl-2">
+            <input id="email" name="email" class="appearance-none block w-full sm:w-2/3 bg-gray-200 text-gray-700 text-xs sm:text-base  py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" value={user.email}>  
             </td>
         </tr>
         <tr>
-            <td class="py-2">{label?.data.tab_email_password} </td>
-            <td class="text-gray-500">
-                <input id="password" name="password" class="appearance-none block w-2/3 bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" placeholder="******************">
+            <td class="py-2 text-sm sm:text-base">{label?.data.tab_email_password} </td>
+            <td class="text-gray-500 pl-2">
+                <input id="password" name="password" class="appearance-none block w-full sm:w-2/3 bg-gray-200 text-gray-700 text-xs sm:text-base border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="password" placeholder="******************">
             </td>
         </tr>
         <tr>
             <td></td>
             <td class="text-right">
                     <input type="hidden" name="form" value="update_email">
-                    <button id="update_button" type="submit" class="bg-[#2077C2] hover:bg-red-500 text-white font-bold py-2 px-4">Update</button>
+                    <button id="update_button" type="submit" class="bg-[#2077C2] hover:bg-red-500 text-white text-sm sm:text-base font-bold py-2 px-4">Update</button>
                 </td>
         </tr>
     </tbody>

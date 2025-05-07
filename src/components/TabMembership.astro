@@ -13,24 +13,24 @@ const joined_str = joined.toLocaleDateString('de-CH', {
 ---
 
 <div class="h-full group p-6 sm:p-8 shadow-2xl shadow-gray-600/10">
-    <table class="mt-6 mb-2 w-full text-gray-600">
+    <table class="mt-6 mb-2 w-full text-gray-600 text-sm sm:text-base">
         <tbody>
+            <tr>
+                <td class="text-sm md:text-base py-2">Name (ID)</td>
+                <td class="text-sm md:text-base text-gray-500 px-4">{user.name} ({user.$id})</td>
+            </tr>
+            <tr>
+                <td class="text-sm md:text-base py-2">{label?.data.tab_membership_profile_joined}</td>
+                <td class="text-sm md:text-base text-gray-500 px-4">{joined_str}</td>
+            </tr>
             <tr>
                 <td></td>
                 <td class="text-right">
                     <form method="POST" id="deleteForm" >
                         <input type="hidden" name="form" value="delete">
-                        <button id="delete_button" type="submit" class="bg-[#2077C2] hover:bg-red-500 text-white font-bold py-2 px-4">{label?.data.tab_membership_delete_account}</button>
+                        <button id="delete_button" type="submit" class="md:bg-[#2077C2] bg-[#FF0000] hover:bg-red-500 text-white text-sm sm:text-base font-bold py-2 px-4 mt-6">{label?.data.tab_membership_delete_account}</button>
                     </td>
                     </form>        
-            </tr>
-            <tr>
-                <td class="py-2">Name (ID)</td>
-                <td class="text-gray-500">{user.name} ({user.$id})</td>
-            </tr>
-            <tr>
-                <td class="py-2">{label?.data.tab_membership_profile_joined}</td>
-                <td class="text-gray-500">{joined_str}</td>
             </tr>
         </tbody>
     </table>
