@@ -68,42 +68,10 @@ const label = await getEntry('labels', `${cl}/labels`)
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
         <ul class="flex flex-col lg:flex-row lg:gap-3">
-          {
-            menuitems.map((item, index) => (
-              <>
-                {/* {item.children && (
-                  <Dropdown
-                    title={item.title}
-                    children={item.children}
-                    lastItem={index === menuitems.length - 1}
-                  />
-                )} */}
-
-                {
-                  <li>
-                    <a
-                      href={item.path}
-                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
-                      <span> {item.title}</span>
-                      {/* {item.badge && (
-                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
-                          New
-                        </span>
-                      )} */}
-                    </a>
-                  </li>
-                }
-              </>
-            ))
-          }
+          <li><a class="px-2" href="myaccount">{ label?.data.my_account }</a></li>
+        <li><a class="px-2 lang-link" href={de_url}>de</a></li>
+        <li><a class="px-2 lang-link" href={en_url}>en</a></li>
         </ul>
     </Astronav>
-    <div>
-        <div class="hidden lg:flex items-center gap-4">
-          <a class="px-2" href="myaccount">{ label?.data.my_account }</a>
-        <a class="px-2 lang-link" href={de_url}>de</a>
-        <a class="px-2 lang-link" href={en_url}>en</a>
-    
-    </div>
   </header>
 </Container>
