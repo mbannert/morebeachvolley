@@ -29,8 +29,6 @@ let f_zip = user_profile?.zip;
 
 
 
-
-
 // Handle form action
 if (Astro.request.method === "POST") {
 
@@ -73,10 +71,6 @@ if (form_type === "delete"){
 
 
 
-  
-  
-  
-
   if (!user_profile) {
     throw new Error("User profile is undefined. Cannot proceed.");
   }
@@ -90,7 +84,7 @@ if (form_type === "delete"){
     };
     console.log("update form:", up_data)
 
-    
+
     const response = await admin_databases.updateDocument(
     '67093d67002873e2c459',
     '67254b050023f2b7dd7d',
@@ -99,13 +93,29 @@ if (form_type === "delete"){
     )
     console.log("Update response:", response);
 }
-    
+
+  if (form_type === "update_email"){
+      const f_pw = form_data.get("password")
+      const f_email = form_data.get("email") 
+      console.log(f_email)
+      await account.updateEmail(f_email, f_pw)
+    }
+
+
+    if (form_type === "update_password"){
+      console.log("hallo barney")
+      const f_pw = form_data.get("password")
+      const f_opw = form_data.get("old_password") 
+      await account.updatePassword(f_pw,f_opw);
+    }
    
 
 
 }
 
 ---
+
+
 
 <style>
  .account-page { padding: 20px; }

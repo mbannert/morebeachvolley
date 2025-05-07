@@ -1,5 +1,5 @@
 ---
-question: "Wer steckt hinter morebeachvolley.ch ?"
+question: "Wer steckt hinter morebeachvolley?"
 ---
 
 MOREBEACHVOLLEYBALL ist ein **Community Projekt** von Beachvolleyballern aus Zürich.
@@ -10,6 +10,6 @@ Trotz dieser besonderen, grossen Gemeinschaft ist Beachvolleyball in der Schhwei
 relativ wenig organisiert.
 
 Das motivierte uns MOREBEACHVOLLEYBALL zu starten. 
-Als ****Ansprechpartner** fördern wir den Austausch **zwischen Aktiven** und der **öffentlichen Verwaltung**.
+Als **Ansprechpartner** fördern wir den Austausch **zwischen Aktiven** und der **öffentlichen Verwaltung**.
 Wir verstehen uns komplementär zu bestehdenden Vereinen und setzen uns insbesondere für die Verbesserung der Infrasruktur ein. 
 

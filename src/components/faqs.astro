@@ -27,10 +27,10 @@ const renderedFaqs = await Promise.all(
 <div class="mt-0 mb-16 md:mt-0">
   {renderedFaqs.map(faq => (
     <div key={faq.id}>
-      <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight mb-4">
+      <h2 class="text-3xl w-full  font-bold lg:tracking-tight mb-4">
         {faq.data.question}
       </h2>
-      <div class="text-lg w-3/4 mt-4 mb-16 text-slate-600">
+      <div class="text-lg w-full sm:max-w-xl mt-4 mb-16 text-slate-600">
         <faq.renderedContent />
       </div>
     </div>
