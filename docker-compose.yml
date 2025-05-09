@@ -1,7 +1,8 @@
-version: "2"
+version: "3"
 services:
   node:
     image: "node:current-alpine3.20"
+    container_name: beachvolley_node_1
     user: "node"
     working_dir: /home/node/app
     environment:
@@ -9,5 +10,10 @@ services:
     volumes:
       - ./:/home/node/app
     ports:
-      - "1234:3000"
+      - "3000:3000"
+    networks:
+      - the_wire
     command: /bin/sh -c "npm install && npm start"
+networks:
+  the_wire:
+    external: true
