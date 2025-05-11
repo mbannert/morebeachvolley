@@ -56,8 +56,8 @@ export function createSessionClient(request) {
 export async function createUserProfile(db, account_id, dta) {
   try{
     const result = await db.createDocument(
-      '67093d67002873e2c459',
-      '67254b050023f2b7dd7d',
+      import.meta.env.DATABASE_ID,
+      import.meta.env.COLLECTION_ID,
       account_id, dta
     );
     return result;
@@ -67,13 +67,15 @@ export async function createUserProfile(db, account_id, dta) {
 }
 
 
+
+
 export async function getUserProfile(db, user_id) {
   // console.log("DB instance:", db);
   // console.log("user id:", user_id);
   try {
     const user_profile = await db.getDocument(
-      '67093d67002873e2c459',
-      '67254b050023f2b7dd7d',
+      import.meta.env.DATABASE_ID,
+      import.meta.env.COLLECTION_ID,
       user_id
     );
     if (!user_profile) {
@@ -90,8 +92,8 @@ export async function getUserProfile(db, user_id) {
 
 export async function deleteUserProfile(db, account_id){
   const result = await db.deleteDocument(
-    '67093d67002873e2c459', // databaseId
-    '67254b050023f2b7dd7d', // collectionId
+    import.meta.env.DATABASE_ID,
+    import.meta.env.COLLECTION_ID,
     account_id // documentId
 );
 return result;
