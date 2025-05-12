@@ -1,14 +1,21 @@
 ---
-question: "Who is behind morebeachvolley.ch ?"
+question: "How do you want to proceed?"
 ---
 
-MOREBEACHVOLLEYBALL is a **community project** of beach volleyball players from Zurich.
-The project was initiated by **Constantin, Joni and Matthias/Bunny**. 
-All three have been playing beach volleyball in Switzerland for many years. 
-Although a lot of people play beach volleyball, most of them are not organized through a club or an interest group.
+There are about 40 beach volleyball courts in the greater Zurich area. 
+Not all of these courts are playable or suitable for tournaments. 
+In a **first phase**, we want to get an **overview of the existing situation** and work with the city to make the **first improvements**:  
 
-This motivated us to start MOREBEACHVOLLEYBALL. 
-As a **contact** we promote the exchange **between active players** and the **public administration**.
-We see ourselves as complementary to existing clubs and are particularly committed to improving the infrastructure.
+-provide rakes/sand sliders  
+-install information boards for field maintenance  
+-Improve/replace netting systems  
+-install lines and antennas (where not available)  
+-Reduce danger spots on fields/field boundaries
 
-Translated with DeepL.com (free version)
+  
+  
+In the **next step** we would like to further promote **dialogue between the city and beach volleyball players** and find out how we can help to promote the sport in the city.
+In doing so, we want to tackle things that **need more lead time and planning**:  
+
+-New and better sand for existing fields  
+-Create additional courts
