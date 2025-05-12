@@ -9,8 +9,4 @@ Although a lot of people play beach volleyball, most of them are not organized t
 
 This motivated us to start MOREBEACHVOLLEYBALL. 
 As a **contact** we promote the exchange **between active players** and the **public administration**.
-We see ourselves as complementary to existing clubs and are particularly committed to improving the infrastructure.---
-question: "moo"
----
-
-blubb
+We see ourselves as complementary to existing clubs and are particularly committed to improving the infrastructure.
