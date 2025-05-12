@@ -1,15 +1,12 @@
 ---
-question: "Wer steckt hinter morebeachvolley?"
+question: "Wer steckt hinter morebeachvolley.ch ?"
 ---
 
 MOREBEACHVOLLEYBALL ist ein **Community Projekt** von Beachvolleyballern aus Zürich.
-Initiert wurde das Projekt von **Constantin Quadt, Jonathan 'Joni' Beck** und **Matthias "Bunny" Bannert**. 
+Initiert wurde das Projekt von **Constantin, Joni und Matthias/Bunny**. 
 Alle drei spielen seit vielen Jahren in der Schweiz Beachvolleyball. 
-Die Leistungsklassen übergreifende Gemeinschaft war für uns dabei immer eine wichtiger Bestandteil unseres Sports. 
-Trotz dieser besonderen, grossen Gemeinschaft ist Beachvolleyball in der Schhweiz im Vergleich zu anderen Sportarten
-relativ wenig organisiert.
+Obwohl sehr viele Menschen Beachvolleyball spielen, sind die meisten davon nicht über einen Verein oder eine Interessengemeinscahft organisiert.
 
 Das motivierte uns MOREBEACHVOLLEYBALL zu starten. 
 Als **Ansprechpartner** fördern wir den Austausch **zwischen Aktiven** und der **öffentlichen Verwaltung**.
-Wir verstehen uns komplementär zu bestehdenden Vereinen und setzen uns insbesondere für die Verbesserung der Infrasruktur ein. 
-
+Wir verstehen uns ergänzend zu bestehenden Vereinen und setzen uns insbesondere für die Verbesserung der Infrastruktur ein.
