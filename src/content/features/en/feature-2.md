@@ -1,6 +1,5 @@
 ---
 title: 'Stay in the looooop.'
-teaser:  "Abonniere den Community Newsletter. Bleib über unseren Community Effort informiert. News, 4 mal pro Jahr. No Spam."
+teaser:  "Subscribe to the Community Newsletter. Stay informed. News, (max.) 4 times per year. No spam."
 icon: "info"
 ---
-

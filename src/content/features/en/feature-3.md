@@ -1,6 +1,5 @@
 ---
-title: "Sprachrohr"
-teaser:  "Ideen und Expertisen gemeinsam einbringen. "
+title: "Your mouthpiece"
+teaser: "Contributing ideas and expertise together. We stand up for you!"
 icon: "speaker"
 ---
-

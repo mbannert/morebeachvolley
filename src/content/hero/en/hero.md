@@ -1,9 +1,7 @@
 ---
 title: 'More Nets. More Sand. More Beachvolleyball.'
-buttontext: Beitreten
+buttontext: Join
 teasertitle: Beachvolley Zürich
-teaser:  Werde Mitglied und unterstütze uns – es ist kostenlos.
+teaser:  Become a member and support us - it's free.
 ---
-
-
-Wir alle lieben Beachvolleyball! Was wir nicht lieben, sind fehlende oder belegte Felder. Um das zu ändern, gibt es jetzt Beachvolley Zürich. Als Club engagieren wir uns für die Verbesserung der bestehenden Infrastruktur und für weitere nutzbare Anlagen. Ausserdem möchten wir eine Anlaufstelle für die Stadt sein und mit ihr zusammen den Sport fördern.
+As a community, we are committed to improving the existing infrastructure and creating more usable facilities. We also want to be a point of contact for authorities and offices to jointly promote sport.
