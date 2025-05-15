@@ -1,6 +1,6 @@
 ---
 title: "Dein Sprachrohr"
-teaser:  "Ideen und Expertise gemeinsam einbringen. Stetiger Austausch und Dialog mit der Verwaltung. "
+teaser:  "Ideen und Expertise gemeinsam einbringen. Wir setzen uns für euch ein!"
 icon: "speaker"
 ---
 

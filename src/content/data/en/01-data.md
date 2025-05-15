@@ -1,57 +1,54 @@
 ---
-title: "Daten & Datenschutz"
+title: "Data & data protection"
 ---
 
 
+## 1. general information
 
-## 1. Allgemeine Infos
-
-Wir sind ein non-profit Community Projekt für die Beachvolleyball-Gemeinschaft in Zürich und in der Schweiz. Der Schutz Deiner Daten ist uns wichtig – hier erfährst Du, welche Informationen wir speichern und wie wir sie nutzen.  
-
-
-
-## 2. Welche Daten wir speichern
-
-Wir speichern **nur das Nötigste** und nur mit Deiner **Zustimmung**:  
-
-- **Deine E-Mail-Adresse und Deinen Namen** – Damit wir Dich kontaktieren können.  
-- **Optionale Profilinfos** (z. B. Newsletter, Postleitzahl) – Falls Du sie freiwillig angibst.  
+We are a non-profit community project for the beach volleyball community in Zurich and Switzerland. The protection of your data is important to us - here you can find out what information we store and how we use it.  
 
 
 
+## 2 What data we store
 
-## 3. Wann werden Deine Daten gelöscht?
+We store **only what is necessary** and only with your **consent**:  
 
-- Wenn Du Dein Konto **löschst**, werden **alle Deine Daten unwiderruflich entfernt**.  
-- Wir behalten **keine** Daten nach der Löschung.  
-
-## 4. Wo & wie speichern wir Deine Daten?
-
-Deine Daten liegen in Europe auf **Hetzner Cloud-Servern in Deutschland**.  
-Wir nutzen moderne Sicherheitsmaßnahmen, um Fremdzugriff zu verhindern.  
+- **Your e-mail address and name** - So that we can contact you.  
+- **Optional profile information** (e.g. newsletter, zip code) - If you provide it voluntarily.  
 
 
-## 5. Cookies & Tracking
 
-Bei uns gibt’s **keine versteckte Überwachung**!  
+## 3. When will your data be deleted?
 
-- Wir setzen **keine Tracking-Tools** oder **Analyse-Software** ein.  
-- Nur technisch **notwendige Cookies** für Login und Authentifizierung werden verwendet.  
-- Unser Webfonts und unsere Bibliotheken sind self-hosted und senden keine Daten an Drittanbieter.
+- If you **delete** your account, **all your data will be irrevocably removed**.  
+- We do **not** keep any data after deletion.  
 
-## 6. Open-Source & Transparenz
+## 4 Where & how do we store your data?
 
-Unsere gesamte Technik basiert auf **Open-Source-Software** – für maximale Transparenz. 
-Unser Frontend wurde mit Typescript Framework Astro gebaut, im Backend verwenden wir Node, Docker und Appwrite.  
-Auf GitHub ist der Quellcode der Webseite öffentlich zugänglich. 
+Your data is stored in Europe on **Hetzner cloud servers in Germany**.  
+We use modern security measures to prevent unauthorized access.  
 
 
-## 7. Haftungsausschluss für Datenverlust  
+## 5. cookies & tracking
 
-Wir schützen Deine Daten nach bestem Wissen und Gewissen und setzen moderne Sicherheitsmaßnahmen ein. Dennoch kann es trotz aller Vorsichtsmaßnahmen zu Datenverlust oder Sicherheitsvorfällen (z. B. einem Data Breach) kommen. Wir übernehmen keine Haftung für **unvorhersehbare, unautorisierte Zugriffe oder Verluste**, die durch externe Angriffe oder technische Fehler entstehen.  
+We have **no hidden surveillance**!  
+
+- We do not use **tracking tools** or **analysis software**.  
+- Only technically **necessary cookies** for login and authentication are used.  
+- Our web fonts and libraries are self-hosted and do not send any data to third parties.
+
+## 6. open source & transparency
+
+Our entire technology is based on **open source software** - for maximum transparency. 
+Our frontend was built with the typescript framework Astro, in the backend we use Node, Docker and Appwrite. 
+The source code of the website is publicly available on GitHub. 
+
+## 7 Disclaimer for data loss  
+
+We protect your data to the best of our knowledge and belief and use modern security measures. Nevertheless, despite all precautions, data loss or security incidents (e.g. a data breach) may occur. We assume no liability for **unforeseeable, unauthorized access or losses** caused by external attacks or technical errors.  
 
 
-## 8. Fragen ? 
+## 8. questions? 
 
-Falls Du Fragen zum Datenschutz oder anderen Themen hast, schreib uns einfach:  
+If you have any questions about data protection or other topics, just write to us: 
 hoi [ at ] morebeachvolley.ch
